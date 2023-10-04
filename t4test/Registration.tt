@@ -1,0 +1,61 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+List<string> classNames = new List<string>{
+"ALL_SL_INSP_COMMENTS", 
+"ALL_SL_INSP_FURINSPREQ", 
+"ALL_SL_INSP_POSITIONS",
+"ALL_SL_INSP_RATINGS",
+"ALL_SL_INSPECTION",
+"ALL_SL_INV_LOCATION",
+"ALL_SL_INV_ORIENTATION",
+"ALL_SLOPEIDS",
+"BR_SL_INV_ACCESSFACT",
+"BR_SL_INV_DIMENSIONS",
+"BR_SL_INV_NOSPA",
+"CU_SL_INV_ACCESSFACT",
+"CU_SL_INV_CELL",
+"CU_SL_INV_DIMENSIONS",
+"CU_SL_INV_NOCELLS",
+"SL_ALLOCATION",
+"SL_ALLOCATION_EXCEPTION",
+"SL_COMMIT_HISTORY",
+"SL_INSP_TEMPLATE",
+"SL_INSPCYCLE",
+"SL_INSPCYCLE_LINK",
+"SL_OWNER_AUTHORITY",
+"SL_PACKAGE",
+"SL_PACKAGE_LOCATION",
+"SL_PACKAGE_SLOPE_LINK",
+"SL_PACKAGE_SLOPE_SIGNOFF",
+"SL_PACKAGE_SLOPE_STATUS",
+"SL_SLOPE_LOCK",
+"SL_INSP_ALLOC_STRUCT_VW",
+"SL_INSP_ALLOCATIONS_EX_VW",
+"SL_INSP_ALLOCATIONS_VW",
+"SL_INSP_COMMENTS_VW",
+"SL_INSP_DIMENSIONCHANGED_VW",
+"SL_INSP_FLAGS_VW",
+"SL_INSP_INCOMPLETE_VW",
+"SL_INSP_NEEDED_VW",
+"SL_INSP_SPANCELLSCHANGED_VW",
+"SL_INSP_STATUSCHANGED_VW",
+"SL_INSP_UNABLE_VW",
+"SL_PACKAGE_ORG_SLOPE_VW",
+"SL_PACKAGE_ORG_VW",
+"SL_PACKAGE_SLOPE_LINK_VW",
+"SL_SLOPE_LOCK_USER_VW",
+"SLOPE_REGION_SECTION_VW",
+"SLOPE_SIGNOFF_VW"};
+
+foreach (string className in classNames) {
+#>
+    container.RegisterType<I<#= className #>Repository, <#= className #>Repository>(new InjectionConstructor(unitofWork));
+    container.RegisterType<I<#= className #>ApplicationService, <#= className #>ApplicationService>();
+<#
+}
+#>
